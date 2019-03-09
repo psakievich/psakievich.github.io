@@ -5,11 +5,11 @@ Splines are piecewise polynomials that are continuously differentiable to one or
 
 Formal definition of B-Splines
 
-$b^n(x) = \int_{x-1}^{x} b^{n-1}$
+$$b^n(x) = \int_{x-1}^{x} b^{n-1}$$
 
-$\frac{d}{dx}b^{n}(x) = b^{n-1}(x) - b^{n-1}(x-1)$
+$$\frac{d}{dx}b^{n}(x) = b^{n-1}(x) - b^{n-1}(x-1)$$
 
-$b^n(0) = 0$
+$$b^n(0) = 0$$
 
 The first two b-splines are plotted below.
 
@@ -72,7 +72,7 @@ plt.show()
 ![png](B-Spline%20Intro_files/B-Spline%20Intro_4_0.png)
 
 
-A more efficient way to construt the B-Splines is to use the recurrance relationship to derive coefficients for the Taylor series representation of the polynomials.  Here we use coefficients $a_{k,l}^{n}$ where $n$ is the B-Spline order, $k$ is the interval on the abscicca and $l$ is the Taylor series term. "
+A more efficient way to construt the B-Splines is to use the recurrance relationship to derive coefficients for the Taylor series representation of the polynomials.  Here we use coefficients $$a_{k,l}^{n}$$ where $$n$$ is the B-Spline order, $$k$$ is the interval on the abscicca and $$l$$ is the Taylor series term. "
 
 
 ```python
@@ -126,7 +126,7 @@ plt.show()
 ![png](B-Spline%20Intro_files/B-Spline%20Intro_6_0.png)
 
 
-The b-splines can also be scaled and translated similar to wavelets.  For this the identity is $b_{k,h}^n = b^n(x/h-k)$ for $h>0$ and $k \in \mathcal{Z}$
+The b-splines can also be scaled and translated similar to wavelets.  For this the identity is $$b_{k,h}^n = b^n(x/h-k)$$ for $$h>0$$ and $$k \in \mathcal{Z}$$
 
 
 ```python
@@ -222,17 +222,17 @@ plt.show()
 # Subdivision 
 A b-spline can be made up of a weighted combination of b-splines of the same order on a reduced grid size.  This is done in the following formula:
 
-$b_{k,h}^n = 2^{-n} \sum_{l=0}^{n+1} bi_{n+1,l} b_{2k+l,h/2}^n$
+$$b_{k,h}^n = 2^{-n} \sum_{l=0}^{n+1} bi_{n+1,l} b_{2k+l,h/2}^n$$
 
-where $bi_{n+1,l}$ are the binomial coefficients 
+where $$bi_{n+1,l}$$ are the binomial coefficients 
 
-$\frac{(n+1)!}{l!((n+1-l)!}$
+$$\frac{(n+1)!}{l!((n+1-l)!}$$
 
-Rather than computing the binomial coefficients directly we can use an averaging procedure to compute the coefficients $c'_{2k+l}=2^{-n} bi_{n+1,l}$.  This is done by initializing the coefficients $c'_{2k}$ and $c'_{2k+1}$ to 1, and setting all others to zero. Then the averaging 
+Rather than computing the binomial coefficients directly we can use an averaging procedure to compute the coefficients $$c'_{2k+l}=2^{-n} bi_{n+1,l}$$.  This is done by initializing the coefficients $$c'_{2k}$$ and $$c'_{2k+1}$$ to 1, and setting all others to zero. Then the averaging 
 
-$c'_l \leftarrow 1/2 (c'_l + c'_{l-1})$
+$$c'_l \leftarrow 1/2 (c'_l + c'_{l-1})$$
 
-is perfomed n times.  The convention for both cases is the coefficient is zero if $l<0$ or $l>n+1$.
+is perfomed n times.  The convention for both cases is the coefficient is zero if $$l<0$$ or $$l>n+1$$.
 
 Their equivalence is shown below
 
